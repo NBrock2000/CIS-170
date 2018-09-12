@@ -10,5 +10,12 @@ public class HelloWorld {
 		int i = new Random().nextInt(list.length);
 		System.out.println("Hello World");
 		System.out.println(list[i]);
+		
+		HelloWorld hw = new HelloWorld();
+		hw.sayHello();
+	}
+	
+	private void sayHello() {
+		System.out.println("Hello");
 	}
 }
