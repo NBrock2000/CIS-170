@@ -8,6 +8,42 @@ public class Strings {
 	private String color;
 	private String trim;
 	
+	private String[] modelA;
+	private String[] trimA;
+	private int[] yearA;
+	private String[] colorA;
+	private int[] fA;
+	
+	public String[] getTrimA() {
+		return trimA;
+	}
+	public void setTrimA(String[] trimA) {
+		this.trimA = trimA;
+	}
+	public int[] getYearA() {
+		return yearA;
+	}
+	public void setYearA(int[] yearA) {
+		this.yearA = yearA;
+	}
+	public String[] getColorA() {
+		return colorA;
+	}
+	public void setColorA(String[] colorA) {
+		this.colorA = colorA;
+	}
+	public int[] getfA() {
+		return fA;
+	}
+	public void setfA(int[] fA) {
+		this.fA = fA;
+	}
+	public String[] getModelA() {
+		return modelA;
+	}
+	public void setModelA(String[] modelA) {
+		this.modelA = modelA;
+	}
 	public String getMake() {
 		return make;
 	}
@@ -38,6 +74,6 @@ public class Strings {
 	public void setTrim(String trim) {
 		this.trim = trim;
 	}
-	
+
 	
 }
