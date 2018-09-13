@@ -32,5 +32,17 @@ public class App {
 		System.out.println("Name: " + u2.getFirstName() + " " + u2.getLastName() + " || Email: " + u2.getEmail() + " || UserName: " + u2.getUserName());
 		System.out.println("Name: " + u3.getFirstName() + " " + u3.getLastName() + " || Email: " + u3.getEmail() + " || UserName: " + u3.getUserName());
 		System.out.println("Name: " + u4.getFirstName() + " " + u4.getLastName() + " || Email: " + u4.getEmail() + " || UserName: " + u4.getUserName());
+		
+		//for loops
+		for(int x = 0; x < 100; x++) {
+			System.out.println(x);
+		}
+	
+	}
+	// Prompt user to guess a letter
+	// Prompt user with mask (recalculate mask)
+	
+	private void generateMask() {
+		
 	}
 }
