@@ -3,13 +3,13 @@ package com.nathan.week3.hangman;
 public class Main {
 
 	public static void main(String[] args) {
-		Util u = new Util();
-		Input in = new Input();
+		Logic l = new Logic();
 		
-		u.createMask();
-		u.promptGuess();
-		while(u.keepRunning()) {
-			in.getInput();
+		l.createMask();
+		l.promptGuess();
+		while(l.keepRunning()) {
+			l.getInput();
+			
 		}
 	} 
 }
