@@ -1,4 +1,4 @@
-package project1;
+package com.nathan.week2;
 
 //App is the entry point to our application.
 public class App {

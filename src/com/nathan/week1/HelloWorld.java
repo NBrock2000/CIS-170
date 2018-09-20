@@ -1,4 +1,4 @@
-package project1;
+package com.nathan.week1;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package com.nathan.week3;
+package com.nathan.week3.hangman;
 
 import java.util.Random;
 
