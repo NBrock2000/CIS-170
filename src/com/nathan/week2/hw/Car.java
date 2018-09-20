@@ -1,4 +1,4 @@
-package car;
+package com.nathan.week2.hw;
 
 import java.util.Random;
 
