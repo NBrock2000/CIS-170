@@ -1,4 +1,4 @@
-package com.nathan.week3.hangman;
+package com.nathan.hangman;
 
 public class Logic {
 
