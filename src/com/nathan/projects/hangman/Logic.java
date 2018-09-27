@@ -1,11 +1,13 @@
 package com.nathan.projects.hangman;
 
+
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Logic {
 
-	String w = Words.word;
+	Words wrd = new Words();
+	String w = wrd.word;
 
 	public void createMask() {
 		if(g.getNewGame() == true && g.getInProgress() == false) {
