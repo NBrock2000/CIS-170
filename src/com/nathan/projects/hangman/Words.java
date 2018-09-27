@@ -2,7 +2,7 @@ package com.nathan.projects.hangman;
 
 import java.util.Random;
 
-public class Arrays {
+public class Words {
 
 	private static String[] wordList = {"Horse", "Dog", "Honda", "Lamborghini"};
 	
