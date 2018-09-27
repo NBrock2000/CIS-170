@@ -1,4 +1,4 @@
-package com.nathan.hangman;
+package com.nathan.test.hangman;
 
 public class Main {
 
@@ -9,6 +9,7 @@ public class Main {
 		l.promptGuess();
 		while(l.keepRunning()) {
 			l.getInput();
+			l.outputInput();
 			
 		}
 	} 

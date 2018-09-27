@@ -1,4 +1,4 @@
-package com.nathan.hangman;
+package com.nathan.projects.hangman;
 
 public class GameState {
 	public boolean win = false;
