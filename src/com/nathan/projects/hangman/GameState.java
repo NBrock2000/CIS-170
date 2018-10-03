@@ -1,10 +1,10 @@
 package com.nathan.projects.hangman;
 
 public class GameState {
-	private boolean win = false;
-	private boolean loss = false;
-	private boolean newGame = true;
-	private boolean inProgress = false;
+	public boolean win = false;
+	public boolean loss = false;
+	public boolean newGame = true;
+	public boolean inProgress = false;
 	
 	public boolean getWin() {
 		return win;

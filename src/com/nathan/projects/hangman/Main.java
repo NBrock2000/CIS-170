@@ -1,28 +1,18 @@
 package com.nathan.projects.hangman;
 
+import com.nathan.test.hangman.Logic;
+
 public class Main {
 
 	public static void main(String[] args) {
 		Logic l = new Logic();
-		GameState g = new GameState();
-		
-		System.out.println("hello");
-		l.createMask();
-		l.promptGuess();
-		while(g.getWin() == true || g.getLoss() == true) {
-			l.newGame();
-		}
 		
 		while(l.keepRunning()) {
-			l.getInput();
 			l.checkStatus();
-			//l.promptGuess();
-			
-			l.calculateMask();
-			
-			//l.printScreen();
-			
-			
+			l.createMask();
+			l.promptGuess();
+			l.getInput();
+			//l.outputInput();
 			
 		}
 	} 

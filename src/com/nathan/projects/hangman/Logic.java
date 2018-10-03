@@ -1,24 +1,61 @@
 package com.nathan.projects.hangman;
 
-
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Logic {
 
-	Words wrd = new Words();
-	String w = wrd.word;
+	//String w = Arrays.word;
+	String w = "honda";
+	GameState g  = new GameState();
 
+	private String[] correctGuess = new String[w.length()];
+	
 	public void createMask() {
-		if(g.getNewGame() == true && g.getInProgress() == false) {
+		if(g.newGame == true || g.getWin() == true || g.getLoss() == true && g.getInProgress() == false) {
+			System.out.println("NEW GAME");
 			for(int i = 0; i < w.length(); i++) {
 				System.out.print("*");
 			}
+			
 			System.out.println();
-			g.setInProgress(true);
 			g.setNewGame(false);
+			g.setInProgress(true);
+			g.setLoss(false);
+			g.setWin(false);
+			
+		} else if(g.getInProgress() == true && input != null) {
+			if(w.contains(input)) {
+				
+				if(!Arrays.asList(correctGuess).contains(input)) {
+					
+					for(int i = 0; i < w.length(); i++) {
+						char c = w.charAt(i);
+						String s = Character.toString(c);
+						if(s.equals(input)) {
+							correctGuess[i] = s;
+						}
+						
+						if(correctGuess[i] == null) {
+							System.out.print("*");
+						} else {
+							System.out.print(correctGuess[i]);
+						}
+					}
+					correct++;
+					
+				}
+				
+			} else {
+				for(int i = 0; i < w.length(); i++) {
+					System.out.print("*");
+				}
+				incorrect++;
+			}
+			
 		}
 	}
+	
 		
 
 	public void promptGuess() {
@@ -30,38 +67,33 @@ public class Logic {
 	}
 
 	public String hint() {
-		String hint = "";
-		//if(incorrect > 0) {
-			if(w.equalsIgnoreCase("Dog") || w.equalsIgnoreCase("Horse")) {
-				hint = "Animal";
-				return hint;
-			} else if(w.equalsIgnoreCase("Honda") || w.equalsIgnoreCase("Lamborghini")) {
-				hint = "Car Brand";
-				return hint;
-			}
-			
-			
-		//}
-		//else {
-		//	return "";
-		//}
-		return "";
+		String hint = null;
+		if(w.equalsIgnoreCase("Dog") || w.equalsIgnoreCase("Horse")) {
+			hint = "Animal";
+		} else if(w.equalsIgnoreCase("Honda") || w.equalsIgnoreCase("Lamborghini")) {
+			hint = "Car Brand";
+		} else {
+			hint = "";
+		}
+		return hint;
 
 	}
 
-	GameState g  = new GameState();
 	
 	public boolean keepRunning() {
-		if(g.getWin() == false && g.getLoss() == false && g.getInProgress() == true) {
+		if(g.getWin() == false && g.getLoss() == false) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	Scanner scan = new Scanner(System.in);
-	private String input = scan.next();
 
+	public String input;
+
+	@SuppressWarnings("resource")
 	public String getInput() {
+		Scanner scan = new Scanner(System.in);
+		input = scan.nextLine().toLowerCase();
 		return input;
 	}
 
@@ -70,75 +102,32 @@ public class Logic {
 	public static int incorrect = 0;
 	
 	public void checkStatus() {
-		if(correct == w.length()) {
+		if(correct == w.length()-1) {
 			g.setWin(true);
+			g.setInProgress(false);
 			correct = 0;
 			incorrect = 0;
+			System.out.println("You Won!");
+			
+			for(int z = 0; z < 5; z++) {
+				System.out.println("");
+			}
+			
 		} else if(incorrect == 5) {
 			g.setLoss(true);
+			g.setInProgress(false);
 			correct = 0;
 			incorrect = 0;
-		}
-	}
-	
-	private String[] correctGuess = new String[w.length() + 1];
-	//private String[] incorrectGuess = new String[6];
-	
-	public void calculateMask() {
-		if(getInput() != null) {
-			if(w.contains(getInput())) {
-				if(!Arrays.asList(correctGuess).contains(getInput())) {
-					for(int i = 0; i < w.length(); i++) {
-						char c = w.charAt(i);
-						String s = Character.toString(c);
-						
-						if(s == getInput()) {
-							System.out.print(getInput());
-							correctGuess[i] = s;
-						} 
-						
-						else {
-							System.out.print("*");
-						}
-					}
-					correct++;
-				}
-				
-			} 
+			System.out.println("You Lost!");
 			
-			else if(w.equalsIgnoreCase(getInput())) {
-				g.setWin(true);
-				correct = 0;
-				incorrect = 0;
+			for(int z = 0; z < 5; z++) {
+				System.out.println("");
 			}
-			/*
-			else { 
-				if(!Arrays.asList(incorrectGuess).contains(getInput())) {
-					incorrectGuess = add(incorrectGuess, getInput());
-					incorrect++;
-				}
-				
-			}*/
 		}
 	}
 	
-	public void newGame() {
-		g.setInProgress(false);
-		g.setNewGame(true);
-		correctGuess = null;
-		//incorrectGuess = null;
-		createMask();
-		
+	public void outputInput() {
+		System.out.println(input);
 	}
 	
-	/*
-	public void printScreen() {
-		calculateMask();
-		promptGuess();
-	}
-	*/
-	
-	//private String[] add(String[] incorrectGuess2, String input2) {
-	//	return null;
-	//}
 }

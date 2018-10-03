@@ -5,11 +5,12 @@ public class Main {
 	public static void main(String[] args) {
 		Logic l = new Logic();
 		
-		l.createMask();
-		l.promptGuess();
 		while(l.keepRunning()) {
+			l.checkStatus();
+			l.createMask();
+			l.promptGuess();
 			l.getInput();
-			l.outputInput();
+			//l.outputInput();
 			
 		}
 	} 
