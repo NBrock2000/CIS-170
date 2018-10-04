@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Logic {
 
-	//String w = Arrays.word;
-	String w = "honda";
+	String w = Words.word.toLowerCase();
+	//String w = "honda";
 	GameState g  = new GameState();
 
 	private String[] correctGuess = new String[w.length()];
@@ -42,7 +42,13 @@ public class Logic {
 							System.out.print(correctGuess[i]);
 						}
 					}
-					correct++;
+					if(w.equalsIgnoreCase("Lamborghini") && input.equalsIgnoreCase("i")) {
+						correct++;
+						correct++;
+					} else {
+						correct++;
+					}
+					
 					
 				}
 				
@@ -61,7 +67,6 @@ public class Logic {
 	public void promptGuess() {
 		System.out.println();
 		System.out.println("Hint: " + hint());
-		System.out.println();
 		System.out.println("Enter a letter: ");
 
 	}
@@ -109,6 +114,10 @@ public class Logic {
 			incorrect = 0;
 			System.out.println("You Won!");
 			
+			for(int i = 0; i < correctGuess.length; i++) {
+				correctGuess[i] = null;
+			}
+			
 			for(int z = 0; z < 5; z++) {
 				System.out.println("");
 			}
@@ -119,6 +128,10 @@ public class Logic {
 			correct = 0;
 			incorrect = 0;
 			System.out.println("You Lost!");
+			
+			for(int i = 0; i < correctGuess.length; i++) {
+				correctGuess[i] = null;
+			}
 			
 			for(int z = 0; z < 5; z++) {
 				System.out.println("");
