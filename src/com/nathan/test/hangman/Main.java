@@ -4,7 +4,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		Logic l = new Logic();
+		Words w =  new Words();
 		
+		w.setWord();
 		while(l.keepRunning()) {
 			l.checkStatus();
 			l.createMask();
