@@ -1,19 +1,29 @@
 package com.nathan.test.hangman;
 
+import java.util.Random;
+
 public class Main {
+
+	private static String[] wordList = {"Horse", "Dog", "Honda", "Lamborghini"};
+	public static String word;
+	
 
 	public static void main(String[] args) {
 		Logic l = new Logic();
-		Words w =  new Words();
 		
-		w.setWord();
-		while(l.keepRunning()) {
-			l.checkStatus();
-			l.createMask();
-			l.promptGuess();
-			l.getInput();
-			//l.outputInput();
+		
+		while(true) {
+			int wordNumber = new Random().nextInt(wordList.length);
+			word = wordList[wordNumber];
 			
+			while(l.keepRunning()) {
+				l.checkStatus();
+				l.createMask();
+				l.promptGuess();
+				l.getInput();
+				//l.outputInput();
+				
+			}
 		}
 	} 
 }
