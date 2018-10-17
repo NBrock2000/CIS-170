@@ -4,17 +4,20 @@ import java.util.Random;
 
 public class Main {
 
-	private static String[] wordList = {"Horse", "Dog", "Honda", "Lamborghini"};
-	public static String word;
+	//private static String[] wordList = {"Horse", "Dog", "Honda", "Lamborghini"};
+	//public static String word;
 	
 
 	public static void main(String[] args) {
 		Logic l = new Logic();
+		Words w = new Words();
+		Random r = new Random();
+		
+		w.setWords(new String[] {"Horse", "Dog", "Honda", "Lamborghini"});
 		
 		
 		while(true) {
-			int wordNumber = new Random().nextInt(wordList.length);
-			word = wordList[wordNumber];
+			w.setWord(w.getWords()[r.nextInt(w.getWords().length)]);
 			
 			while(l.keepRunning()) {
 				l.checkStatus();

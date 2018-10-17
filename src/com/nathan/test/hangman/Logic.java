@@ -8,8 +8,9 @@ public class Logic {
 	
 	//String w = "honda";
 	GameState g  = new GameState();
+	Words w = new Words();
 
-	private String[] correctGuess = new String[Main.word.length()];
+	private String[] correctGuess = new String[w.getWords().length];
 	
 	
 	
@@ -26,7 +27,7 @@ public class Logic {
 		if(g.newGame == true || g.getWin() == true || g.getLoss() == true && g.getInProgress() == false) {
 			System.out.println("NEW GAME");
 			//setCorrectGuess();
-			for(int i = 0; i < Main.word.length(); i++) {
+			for(int i = 0; i < w.getWord().length(); i++) {
 				System.out.print("*");
 			}
 			
@@ -37,12 +38,12 @@ public class Logic {
 			g.setWin(false);
 			
 		} else if(g.getInProgress() == true && input != null) {
-			if(Main.word.contains(input)) {
+			if(w.getWord().contains(input)) {
 				
 				if(!Arrays.asList(correctGuess).contains(input)) {
 					
-					for(int i = 0; i < Main.word.length(); i++) {
-						char c = Main.word.charAt(i);
+					for(int i = 0; i < w.getWord().length(); i++) {
+						char c = w.getWord().charAt(i);
 						String s = Character.toString(c);
 						if(s.equals(input)) {
 							correctGuess[i] = s;
@@ -54,7 +55,7 @@ public class Logic {
 							System.out.print(correctGuess[i]);
 						}
 					}
-					if(Main.word.equalsIgnoreCase("Lamborghini") && input.equalsIgnoreCase("i")) {
+					if(w.getWord().equalsIgnoreCase("Lamborghini") && input.equalsIgnoreCase("i")) {
 						correct++;
 						correct++;
 					} else {
@@ -65,7 +66,7 @@ public class Logic {
 				}
 				
 			} else {
-				for(int i = 0; i < Main.word.length(); i++) {
+				for(int i = 0; i < w.getWord().length(); i++) {
 					System.out.print("*");
 				}
 				incorrect++;
@@ -85,9 +86,9 @@ public class Logic {
 
 	public String hint() {
 		String hint = null;
-		if(Main.word.equalsIgnoreCase("Dog") || Main.word.equalsIgnoreCase("Horse")) {
+		if(w.getWord().equalsIgnoreCase("Dog") || w.getWord().equalsIgnoreCase("Horse")) {
 			hint = "Animal";
-		} else if(Main.word.equalsIgnoreCase("Honda") || Main.word.equalsIgnoreCase("Lamborghini")) {
+		} else if(w.getWord().equalsIgnoreCase("Honda") || w.getWord().equalsIgnoreCase("Lamborghini")) {
 			hint = "Car Brand";
 		} else {
 			hint = "";
@@ -119,7 +120,7 @@ public class Logic {
 	public static int incorrect = 0;
 	
 	public void checkStatus() {
-		if(correct == Main.word.length()-1) {
+		if(correct == w.getWord().length()-1) {
 			g.setWin(true);
 			g.setInProgress(false);
 			correct = 0;
