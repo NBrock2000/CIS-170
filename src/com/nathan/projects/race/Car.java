@@ -2,15 +2,15 @@ package com.nathan.projects.race;
 
 public class Car {
 
-	private int topSpeed;
-	private int acc;
-	private int tankSize;
-	private int mpg;
-	private int pitStopDuration;
+	private double topSpeed;
+	private double acc;
+	private double tankSize;
+	private double mpg;
+	private double pitStopDuration;
 	private double distanceTraveled;
 	private double time;
 	
-	public Car(int topSpeed, int Acc, int tankSize, int mpg, int pitStopDuration) {
+	public Car(double topSpeed, double Acc, double tankSize, double mpg, double pitStopDuration) {
 		// Top Speed - MPH
 		this.topSpeed = topSpeed;
 		// Acceleration - MPH/s
@@ -26,7 +26,7 @@ public class Car {
 	
 	public double milesUntilPitStop(double distanceTraveled) {
 		
-		double gasUsed = mpg/distanceTraveled;
+		double gasUsed = distanceTraveled/mpg;
 		double gasLeft = tankSize-gasUsed;
 		double milesLeft = gasLeft*mpg;
 		
@@ -45,52 +45,52 @@ public class Car {
 	}
 	
 	
-	public int getTopSpeed() {
+	public double getTopSpeed() {
 		return topSpeed;
 	}
 
 
-	public void setTopSpeed(int topSpeed) {
+	public void setTopSpeed(double topSpeed) {
 		this.topSpeed = topSpeed;
 	}
 
 
-	public int getAcceleration() {
+	public double getAcceleration() {
 		return acc;
 	}
 
 
-	public void setAcceleration(int acc) {
+	public void setAcceleration(double acc) {
 		this.acc = acc;
 	}
 
 
-	public int getTankSize() {
+	public double getTankSize() {
 		return tankSize;
 	}
 
 
-	public void setTankSize(int tankSize) {
+	public void setTankSize(double tankSize) {
 		this.tankSize = tankSize;
 	}
 
 
-	public int getMpg() {
+	public double getMpg() {
 		return mpg;
 	}
 
 
-	public void setMpg(int mpg) {
+	public void setMpg(double mpg) {
 		this.mpg = mpg;
 	}
 
 
-	public int getPitStopDuration() {
+	public double getPitStopDuration() {
 		return pitStopDuration;
 	}
 
 
-	public void setPitStopDuration(int pitStopDuration) {
+	public void setPitStopDuration(double pitStopDuration) {
 		this.pitStopDuration = pitStopDuration;
 	}
 

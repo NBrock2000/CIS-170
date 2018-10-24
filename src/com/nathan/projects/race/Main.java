@@ -4,14 +4,43 @@ public class Main {
 
 	public static void main(String[] args) {
 		//Race r = new Race();
-		Car Honda = new Car(220, 30, 10, 15, 60);
+		Car car1 = new Car(220, 60, 18, 30, 60);
+		Car car2 = new Car(200, 55.7, 19.7, 30, 30);
 		//while(r.isNotFinished()) {
-			if(Honda.milesUntilPitStop(Honda.distTraveled()) <= 10) {
-				System.out.println(Honda.milesUntilPitStop(Honda.distTraveled()) + " Miles Remaining");
+			if(car1.milesUntilPitStop(car1.distTraveled()) <= 10) {
+				System.out.println("Car1: " + car1.milesUntilPitStop(car1.distTraveled()) + " Miles Remaining");
+				System.out.println("Test Fail");
 			}
 			else {
+				System.out.println("Car1: " + car1.milesUntilPitStop(car1.distTraveled()) + " Miles Remaining");
+				System.out.println("Test Pass - 10");
+			}
+			
+			if(car1.milesUntilPitStop(car1.distTraveled()) <= 150) {
+				System.out.println("Car1: " + car1.milesUntilPitStop(car1.distTraveled()) + " Miles Remaining");
+				System.out.println("Test Pass - 150");
+			}
+			else {
+				System.out.println("Car1: " + car1.milesUntilPitStop(car1.distTraveled()) + " Miles Remaining");
 				System.out.println("Test Fail");
-				System.out.println(Honda.milesUntilPitStop(Honda.distTraveled()) + " Miles Remaining");
+			}
+			
+			if(car2.milesUntilPitStop(car2.distTraveled()) <= 10) {
+				System.out.println("Car2: " + car2.milesUntilPitStop(car2.distTraveled()) + " Miles Remaining");
+				System.out.println("Test Fail");
+			}
+			else {
+				System.out.println("Car2: " + car2.milesUntilPitStop(car2.distTraveled()) + " Miles Remaining");
+				System.out.println("Test Pass - 10");
+			}
+			
+			if(car2.milesUntilPitStop(car2.distTraveled()) <= 200) {
+				System.out.println("Car2: " + car2.milesUntilPitStop(car2.distTraveled()) + " Miles Remaining");
+				System.out.println("Test Fail");
+			}
+			else {
+				System.out.println("Car2: " + car2.milesUntilPitStop(car2.distTraveled()) + " Miles Remaining");
+				System.out.println("Test Pass - 200");
 			}
 			
 		//}
