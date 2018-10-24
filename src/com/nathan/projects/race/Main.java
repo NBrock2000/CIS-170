@@ -4,6 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		//Race r = new Race();
+		// topSpeed, ACC, tank size, MPG, pit stop time
 		Car car1 = new Car(220, 60, 18, 30, 60);
 		Car car2 = new Car(200, 55.7, 19.7, 30, 30);
 		//while(r.isNotFinished()) {
