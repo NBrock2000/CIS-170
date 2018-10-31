@@ -1,86 +1,45 @@
 package com.nathan.projects.hangman_v2;
 
-import java.awt.EventQueue;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-import javax.swing.JFrame;
-import javax.swing.JSplitPane;
-import java.awt.BorderLayout;
-import javax.swing.JTextPane;
-import javax.swing.JLabel;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+
+
 
 public class Main {
 
-	private JFrame frmHangman;
-	private JTextField textField;
-	private JTextField textField_1;
-
-	/**
-	 * Launch the application.
-	 */
+	List<Words> words = new ArrayList<Words>();
+	public void loadFile() throws IOException {
+		File f = new File("src/com/nathan/projects/hangman_v2/Util.txt");
+		if(f.exists()) {
+			BufferedReader br = new BufferedReader(new FileReader(f));
+			String s;
+			while((s = br.readLine()) != null) {
+				Words w = new Words();
+				w.setString(s);
+				words.add(w);
+				
+				
+				
+			}
+		}
+	}
+	Random r =  new Random();
+	private int w = r.nextInt(words.size());
+	public String word = words.get(w).toString();
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Main window = new Main();
-					window.frmHangman.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public Main() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frmHangman = new JFrame();
-		frmHangman.setTitle("Hangman - by Nathan Brock");
-		frmHangman.setBounds(100, 100, 690, 590);
-		frmHangman.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmHangman.getContentPane().setLayout(null);
-		
-		JButton btnGuess = new JButton("Guess");
-		btnGuess.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnGuess.setBounds(58, 92, 115, 29);
-		frmHangman.getContentPane().add(btnGuess);
-		
-		textField = new JTextField();
-		textField.setBounds(58, 63, 146, 26);
-		frmHangman.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblEnterAGuess = new JLabel("Enter A Guess Below:");
-		lblEnterAGuess.setBounds(58, 38, 153, 20);
-		frmHangman.getContentPane().add(lblEnterAGuess);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(387, 48, 252, 467);
-		frmHangman.getContentPane().add(textArea);
-		
-		JLabel lblGuessesRemaining = new JLabel("Guesses Remaining");
-		lblGuessesRemaining.setBounds(29, 394, 144, 20);
-		frmHangman.getContentPane().add(lblGuessesRemaining);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(29, 415, 146, 26);
-		frmHangman.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		Main m = new Main();
+		try {
+			m.loadFile();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
