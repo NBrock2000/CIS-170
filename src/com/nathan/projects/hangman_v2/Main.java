@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.nathan.projects.hangman_v2.Logic;
+
 
 
 
@@ -24,7 +26,7 @@ public class Main {
 		this.word = word;
 	}
 	
-	List<Words> words = new ArrayList<Words>();
+	List<String> words = new ArrayList<String>();
 	
 	public void loadFile() throws IOException {
 		File f = new File("src/com/nathan/projects/hangman_v2/Util.txt");
@@ -32,29 +34,35 @@ public class Main {
 			BufferedReader br = new BufferedReader(new FileReader(f));
 			String s;
 			while((s = br.readLine()) != null) {
-				Words w = new Words();
-				w.setString(s);
-				words.add(w);
+				words.add(s);
 			}
 		}
 	}
 	public void genWord() {
 		Main m = new Main();
 		Random r =  new Random();
-		int w = r.nextInt(words.size());
-		m.setWord(words.get(w).toString());
-		System.out.println(m.getWord());
+
+		//word = words.get(r.nextInt(words.size()));
+		//m.setWord(words.get(r.nextInt(words.size())));
 	}
 	
 	public static void main(String[] args) {
 		Main m = new Main();
+		Logic l = new Logic();
 		try {
 			m.loadFile();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		m.genWord();
+		while(true) {
+			while(l.keepRunning()) {
+				l.checkStatus();
+				l.createMask();
+				l.promptGuess();
+				l.getInput();
+			}
+		}
+
 		
 		
 		
