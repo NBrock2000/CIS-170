@@ -1,6 +1,6 @@
 package com.nathan.projects.hangman;
 
-import com.nathan.test.hangman.Logic;
+import com.nathan.projects.hangman.Logic;
 
 public class Main {
 

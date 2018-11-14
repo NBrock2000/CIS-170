@@ -16,17 +16,17 @@ import com.nathan.projects.hangman_v2.Logic;
 
 public class Main {
 	
-	public String word;
+	public static String word;
 	
 	public String getWord() {
 		return word;
 	}
 
-	public void setWord(String word) {
+	/*public void setWord(String word) {
 		this.word = word;
-	}
+	}*/
 	
-	List<String> words = new ArrayList<String>();
+	static List<String> words = new ArrayList<String>();
 	
 	public void loadFile() throws IOException {
 		File f = new File("src/com/nathan/projects/hangman_v2/Util.txt");
@@ -38,13 +38,6 @@ public class Main {
 			}
 		}
 	}
-	public void genWord() {
-		Main m = new Main();
-		Random r =  new Random();
-
-		//word = words.get(r.nextInt(words.size()));
-		//m.setWord(words.get(r.nextInt(words.size())));
-	}
 	
 	public static void main(String[] args) {
 		Main m = new Main();
@@ -55,6 +48,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		while(true) {
+			word = words.get(new Random().nextInt(words.size()));
 			while(l.keepRunning()) {
 				l.checkStatus();
 				l.createMask();

@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Logic {
 
-	//String w = Arrays.word;
-	String w = "honda";
+	String w = Words.word;
+	//String w = "honda";
 	GameState g  = new GameState();
 
 	private String[] correctGuess = new String[w.length()];

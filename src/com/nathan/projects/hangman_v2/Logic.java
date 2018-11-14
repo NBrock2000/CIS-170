@@ -15,9 +15,9 @@ public class Logic {
 	List<Character> guesses = new ArrayList<Character>();
 	
 	public void createMask() {
-		if(g.newGame == true || g.getWin() == true || g.getLoss() == true && g.getInProgress() == false) {
+		if(g.newGame == true || g.getWin() == true || g.getLoss() == true) {
 			System.out.println("NEW GAME");
-			m.genWord();
+			System.out.println(m.getWord());
 			for(int i = 0; i < m.getWord().length(); i++) {
 				System.out.print("*");
 			}
@@ -30,9 +30,7 @@ public class Logic {
 			
 		} else if(g.getInProgress() == true && input != null) {
 			if(m.getWord().contains(input)) {
-				
-				if(!guesses.contains(input)) {
-					
+				//if(!guesses.contains(input)) {
 					for(int i = 0; i < m.getWord().length(); i++) {
 						char c = m.getWord().charAt(i);
 						String s = Character.toString(c);
@@ -40,21 +38,15 @@ public class Logic {
 							guesses.add(i, c);
 						}
 						
-						if(guesses.get(i) == null) {
+						if(guesses.get(i).equals(null)) {
 							System.out.print("*");
 						} else {
 							System.out.print(guesses.get(i));
 						}
 					}
-					if(m.getWord().equalsIgnoreCase("Lamborghini") && input.equalsIgnoreCase("i")) {
-						correct++;
-						correct++;
-					} else {
-						correct++;
-					}
-					
-					
-				}
+					correct++;
+						
+				//}
 				
 			} else {
 				for(int i = 0; i < m.getWord().length(); i++) {

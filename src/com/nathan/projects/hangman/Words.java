@@ -7,5 +7,5 @@ public class Words {
 	private static String[] wordList = {"Horse", "Dog", "Honda", "Lamborghini"};
 	
 	static int wordNumber = new Random().nextInt(wordList.length);
-	public final String word = wordList[wordNumber];
+	public final static String word = wordList[wordNumber];
 }
