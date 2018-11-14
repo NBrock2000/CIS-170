@@ -48,12 +48,17 @@ public class Main {
 			e.printStackTrace();
 		}
 		while(true) {
-			word = words.get(new Random().nextInt(words.size()));
 			while(l.keepRunning()) {
 				l.checkStatus();
+				try {
+					l.writeFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				l.createMask();
 				l.promptGuess();
 				l.getInput();
+				
 			}
 		}
 

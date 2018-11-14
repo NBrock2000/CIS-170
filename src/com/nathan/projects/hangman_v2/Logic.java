@@ -1,25 +1,29 @@
 package com.nathan.projects.hangman_v2;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 
 public class Logic {
 
-	
-
 	GameState g  = new GameState();
 	Main m =  new Main();
 
-	List<Character> guesses = new ArrayList<Character>();
+	private static String ast = "*";
+	List<String> guesses = new ArrayList<String>();
 	
 	public void createMask() {
 		if(g.newGame == true || g.getWin() == true || g.getLoss() == true) {
 			System.out.println("NEW GAME");
-			System.out.println(m.getWord());
+			Main.word = Main.words.get(new Random().nextInt(Main.words.size()));
 			for(int i = 0; i < m.getWord().length(); i++) {
 				System.out.print("*");
+				guesses.add(i, ast);
 			}
 			
 			System.out.println();
@@ -30,24 +34,21 @@ public class Logic {
 			
 		} else if(g.getInProgress() == true && input != null) {
 			if(m.getWord().contains(input)) {
-				//if(!guesses.contains(input)) {
-					for(int i = 0; i < m.getWord().length(); i++) {
-						char c = m.getWord().charAt(i);
-						String s = Character.toString(c);
-						if(s.equals(input)) {
-							guesses.add(i, c);
-						}
-						
-						if(guesses.get(i).equals(null)) {
-							System.out.print("*");
-						} else {
-							System.out.print(guesses.get(i));
-						}
+				for(int i = 0; i < m.getWord().length(); i++) {
+					char c = m.getWord().charAt(i);
+					String s = Character.toString(c);
+					if(s.equals(input)) {
+						guesses.add(i, s);
 					}
-					correct++;
+					
+					if(guesses.get(i).equals(null)) {
+						System.out.print("*");
+					} else {
+						System.out.print(guesses.get(i));
+					}
+				}
+				correct++;
 						
-				//}
-				
 			} else {
 				for(int i = 0; i < m.getWord().length(); i++) {
 					System.out.print("*");
@@ -58,8 +59,6 @@ public class Logic {
 		}
 	}
 	
-		
-
 	public void promptGuess() {
 		System.out.println();
 	//	System.out.println("Hint: " + hint());
@@ -132,6 +131,30 @@ public class Logic {
 				
 			}
 		}
+	}
+	
+	public void writeFile() throws IOException
+	{
+	    BufferedWriter writer = new BufferedWriter(new FileWriter("src/com/nathan/projects/hangman_v2/log.txt"));
+	    try {
+			if(g.getWin() == true) {
+				writer.write("Game: " + m.getWord() + " Win");
+			} else if(g.getLoss() == true) {
+				writer.write("Game: " + m.getWord() + " Loss");	
+			} else if(g.getInProgress() == true) {
+				writer.write("Game: " + m.getWord() + " in progress");
+			}
+			writer.newLine();
+		} 
+	    catch (IOException e) 
+	    {
+			throw e;
+		}
+	    finally
+	    {
+	    	writer.close();
+	    }   
+
 	}
 	
 }
