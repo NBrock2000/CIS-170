@@ -165,7 +165,11 @@ public class Main {
 		JButton btnPlaceOrder = new JButton("Place Order");
 		btnPlaceOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				User u = new User();
+				u.setFirstName(txtFirstName.toString());
+				u.setLastName(txtLastName.toString());
+				u.setEmail(txtEmail.toString());
+				u.setPassword(txtPassword.toString());
 			}
 		});
 		btnPlaceOrder.setBounds(232, 193, 89, 23);
