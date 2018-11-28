@@ -20,6 +20,7 @@ public class Order {
 		private String state;
 		private int zipcode;
 		
+		// the list holds all of the elements of the address
 		List<Object> address = new ArrayList<Object>();
 		public void addAddress() {
 			if(address.isEmpty()) {
@@ -27,16 +28,9 @@ public class Order {
 				address.add(city);
 				address.add(state);
 				address.add(zipcode);
-			} else {
-				for(int i = 0; i < address.size(); i++) {
-					address.remove(i);
-				}
-				address.add(street);
-				address.add(city);
-				address.add(state);
-				address.add(zipcode);
-			}
+			} 
 		}
+		//getters and setters for address objects
 		public String getStreet() {
 			return street;
 		}
@@ -67,7 +61,7 @@ public class Order {
 	private String lastName;
 	private String email;
 	private String password;
-	
+	// the list holds the address and the user info
 	List<Object> user = new ArrayList<Object>();
 	public void addUser() {
 		if(user.isEmpty()) {
@@ -75,23 +69,11 @@ public class Order {
 			user.add(lastName);
 			user.add(email);
 			user.add(password);
-			//Address a = new Address();
-			addAddress();
-			user.add(address);
-		} else {
-			for(int i = 0; i < user.size(); i++) {
-				user.remove(i);
-			}
-			user.add(firstName);
-			user.add(lastName);
-			user.add(email);
-			user.add(password);
-			//Address a = new Address();
 			addAddress();
 			user.add(address);
 		}
 	}
-	
+	//getters and setters for user objects
 	public String getFirstName() {
 		return firstName;
 	}
@@ -121,10 +103,12 @@ public class Order {
 	private String item;
 	private int quanity;
 	private double cost;
-	
+	// the list "order" holds the singular order and all user info
 	List<Object> order =  new ArrayList<Object>();
+	// the list "orders" holds all orders for all users
 	List<Object> orders = new ArrayList<Object>();
 	public void addOrder() throws IOException {
+		// reads from a file and adds to list
 		File f = new File("src/com/nathan/projects/user_modeling/Log.txt");
 		System.out.println("File: " + f.exists());
 		if(f.exists()) {
@@ -138,25 +122,12 @@ public class Order {
 			order.add(item);
 			order.add(quanity);
 			order.add(cost);
-			//User u =  new User();
 			addUser();
 			order.add(user);
 			orders.add(order);
-			for(int i = 0; i < orders.size();i++) {
-				System.out.println(orders.toString());
-			}
-		} else {
-			for(int i = 0; i < order.size(); i++) {
-				order.remove(i);
-			}
-			order.add(item);
-			order.add(quanity);
-			order.add(cost);
-			//User u =  new User();
-			addUser();
-			order.add(user);
+			System.out.println(orders.toString());
 		}
-		
+		//writes the list to a file: "Log.txt"
 		BufferedWriter writer = new BufferedWriter(new FileWriter("src/com/nathan/projects/user_modeling/Log.txt"));
 	    try {
 			
@@ -171,6 +142,7 @@ public class Order {
 	    	writer.close();
 	    }
 	}
+	//getters and setters for order objects
 	public String getItem() {
 		return item;
 	}

@@ -163,8 +163,6 @@ public class Main {
 		JButton btnPlaceOrder = new JButton("Place Order");
 		btnPlaceOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Address a = new Address();
-				//User u = new User();
 				Order o = new Order();
 				
 				o.setStreet(txtAddress.getText().toString());
