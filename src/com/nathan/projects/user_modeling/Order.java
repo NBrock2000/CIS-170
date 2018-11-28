@@ -110,7 +110,7 @@ public class Order {
 	public void addOrder() throws IOException {
 		// reads from a file and adds to list
 		File f = new File("src/com/nathan/projects/user_modeling/Log.txt");
-		System.out.println("File: " + f.exists());
+		//System.out.println("File: " + f.exists());
 		if(f.exists()) {
 			BufferedReader br = new BufferedReader(new FileReader(f));
 			String s;
