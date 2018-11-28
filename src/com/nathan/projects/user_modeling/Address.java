@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Address {
-
+/*
 	private String street;
 	private String city;
 	private String state;
-	private String zipcode;
+	private int zipcode;
 	
-	List<String> address = new ArrayList<String>();
+	List<Object> address = new ArrayList<Object>();
 	public void addAddress() {
 		if(address.isEmpty()) {
 			address.add(street);
@@ -45,10 +45,10 @@ public class Address {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public String getZipcode() {
+	public int getZipcode() {
 		return zipcode;
 	}
-	public void setZipcode(String zipcode) {
+	public void setZipcode(int zipcode) {
 		this.zipcode = zipcode;
-	}
+	}*/
 }

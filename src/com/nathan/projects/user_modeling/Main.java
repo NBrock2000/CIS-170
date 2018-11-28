@@ -1,16 +1,14 @@
 package com.nathan.projects.user_modeling;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JSeparator;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Main {
 
@@ -165,11 +163,28 @@ public class Main {
 		JButton btnPlaceOrder = new JButton("Place Order");
 		btnPlaceOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				User u = new User();
-				u.setFirstName(txtFirstName.toString());
-				u.setLastName(txtLastName.toString());
-				u.setEmail(txtEmail.toString());
-				u.setPassword(txtPassword.toString());
+				//Address a = new Address();
+				//User u = new User();
+				Order o = new Order();
+				
+				o.setStreet(txtAddress.getText().toString());
+				o.setCity(txtCity.getText().toString());
+				o.setState(txtState.getText().toString());
+				o.setZipcode(Integer.parseInt(txtZipcode.getText().toString()));
+				
+				o.setFirstName(txtFirstName.getText().toString());
+				o.setLastName(txtLastName.getText().toString());
+				o.setEmail(txtEmail.getText().toString());
+				o.setPassword(txtPassword.getText().toString());
+				
+				o.setItem(txtItem.getText().toString());
+				o.setQuanity(Integer.parseInt(txtQuanity.getText().toString()));
+				o.setCost(Double.parseDouble(txtCost.getText().toString()));
+				try {
+					o.addOrder();
+				} catch(IOException ei) {
+					ei.printStackTrace();
+				}
 			}
 		});
 		btnPlaceOrder.setBounds(232, 193, 89, 23);
