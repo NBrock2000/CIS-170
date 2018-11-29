@@ -4,13 +4,13 @@ public class Project {
 
 	/* Nathan Brock
 	 * 
-	 * Definition: 
-	 * - 
-	 * - http://celestialcoding.com/java/150-java-program-ideas/
+	 * Description: 
+	 * - Encodes and decodes binary from a file or ui to more securely store and transfer information.
 	 * Criteria:
-	 * - 
-	 * - 
-	 * - 
-	 * - 
+	 * - encodes from a file to a file or to ui
+	 * - encodes from ui to a file or to ui
+	 * - decodes from a file to a file or to ui
+	 * - decodes from ui to a file or to ui
+	 * - able to specify location(s) of file(s) within ui
 	 */
 }
