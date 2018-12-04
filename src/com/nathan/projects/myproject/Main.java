@@ -3,7 +3,6 @@ package com.nathan.projects.myproject;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JRadioButton;
 
 public class Main {
 
@@ -37,8 +36,8 @@ public class Main {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 612, 532);
+		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 	}
+
 }
