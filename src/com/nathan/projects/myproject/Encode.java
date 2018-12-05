@@ -3,12 +3,13 @@ package com.nathan.projects.myproject;
 public class Encode {
 
 	private String k = "";
-	public String encodeUItoUI() {
+	public void encodeUItoUI() {
 		Main m = new Main();
 		Util u = new Util();
-		if(u.key.contains(m.getSM())) {
+		if(u.key.containsValue(m.getSM())) {
 			k = (String) u.getKey(m.getSM());
+			
 		}
-		return k;
+		//return (String) k;
 	}
 }

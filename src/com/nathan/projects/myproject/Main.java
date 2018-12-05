@@ -29,8 +29,6 @@ public class Main {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		Util u = new Util();
-		u.init();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -215,11 +213,12 @@ public class Main {
 		JButton btnEncode = new JButton("Encode");
 		btnEncode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Encode en = new Encode();
-				if(rdbtnFromTextBox.isSelected() && rdbtnToTextBox.isSelected())
-					if(!getSM().isEmpty()) {
-						txtDestMessage.setText(en.encodeUItoUI());
-					}
+				Util u = new Util();
+				u.init();
+				if(rdbtnFromTextBox.isSelected() && rdbtnToTextBox.isSelected()) {	
+					String k = (String) u.getKey(txtSourceMessage.getText());
+					txtDestMessage.setText(k);
+				}
 			}
 		});
 		btnEncode.setBounds(336, 162, 89, 23);

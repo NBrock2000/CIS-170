@@ -2,14 +2,13 @@ package com.nathan.projects.myproject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 public class Util {
 
-	Hashtable<String, String> key = new Hashtable<String, String>(100, (float) .95);
+	Map<String, String> key = new HashMap<String, String>(100, (float) .95);
 	List<String> input = new ArrayList<String>();
 	
 	public void init() {
