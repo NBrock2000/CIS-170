@@ -1,18 +1,21 @@
 package com.nathan.projects.myproject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class Util {
 
-	Hashtable<String, String> key = new Hashtable<String, String>(100, (float) .9);
+	Hashtable<String, String> key = new Hashtable<String, String>(100, (float) .95);
 	List<String> input = new ArrayList<String>();
 	
 	public void init() {
 		key.put("00100000", " ");
 		key.put("00100001", "!");
-		//key.put("00100010", """); find out how to put in ""
+		key.put("00100010", "\"");
 		key.put("00100011", "#");
 		key.put("00100100", "$");
 		key.put("00100101", "%");
@@ -69,7 +72,7 @@ public class Util {
 		key.put("01011001", "Y");
 		key.put("01011010", "Z");
 		key.put("01011011", "[");
-		//key.put("01011100", "\");  lllllllllllllllllllllllllllllllll
+		key.put("01011100", "\\");
 		key.put("01011101", "]");
 		key.put("01011110", "^");
 		key.put("01011111", "_");
@@ -104,5 +107,17 @@ public class Util {
 		key.put("01111100", "|");
 		key.put("01111101", "}");
 		key.put("01111110", "~");
+	}
+	
+	public Object getKey(String valueOfKey) {
+		
+		for(Object k : key.entrySet()) {
+			Map.Entry<String, String> entry = (Entry<String, String>) k;
+			if(entry.getKey().equals(valueOfKey)) {
+				return entry.getValue();
+			}
+		}
+		
+		return null;
 	}
 }
