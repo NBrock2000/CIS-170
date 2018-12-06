@@ -25,10 +25,13 @@ public class Main {
 	private JTextField txtDestMessage_2;
 	private JTextField txtDestFile_2;
 
+	private static Util u;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		u = new Util();
+		u.init();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -112,7 +115,7 @@ public class Main {
 		
 		txtDestFile = new JTextField();
 		txtDestFile.setColumns(10);
-		txtDestFile.setBounds(566, 81, 164, 20);
+		txtDestFile.setBounds(570, 81, 164, 20);
 		frmEncoder.getContentPane().add(txtDestFile);
 		
 		JLabel lblEncodedMessage = new JLabel("Encoded message");
@@ -121,11 +124,11 @@ public class Main {
 		
 		txtDestMessage = new JTextField();
 		txtDestMessage.setColumns(10);
-		txtDestMessage.setBounds(566, 131, 164, 20);
+		txtDestMessage.setBounds(570, 131, 164, 20);
 		frmEncoder.getContentPane().add(txtDestMessage);
 		
 		JLabel lblEncoder = new JLabel("Encoder");
-		lblEncoder.setBounds(360, 11, 46, 14);
+		lblEncoder.setBounds(360, 11, 54, 14);
 		frmEncoder.getContentPane().add(lblEncoder);
 		
 		JLabel label_2 = new JLabel("Enter a message");
@@ -178,12 +181,12 @@ public class Main {
 		
 		txtDestMessage_2 = new JTextField();
 		txtDestMessage_2.setColumns(10);
-		txtDestMessage_2.setBounds(566, 374, 164, 20);
+		txtDestMessage_2.setBounds(570, 374, 164, 20);
 		frmEncoder.getContentPane().add(txtDestMessage_2);
 		
 		txtDestFile_2 = new JTextField();
 		txtDestFile_2.setColumns(10);
-		txtDestFile_2.setBounds(566, 324, 164, 20);
+		txtDestFile_2.setBounds(570, 324, 164, 20);
 		frmEncoder.getContentPane().add(txtDestFile_2);
 		
 		JLabel label_7 = new JLabel("Destination");
@@ -191,7 +194,7 @@ public class Main {
 		frmEncoder.getContentPane().add(label_7);
 		
 		JLabel lblDecoder = new JLabel("Decoder");
-		lblDecoder.setBounds(360, 254, 46, 14);
+		lblDecoder.setBounds(360, 254, 54, 14);
 		frmEncoder.getContentPane().add(lblDecoder);
 
 		ButtonGroup enSource = new ButtonGroup();
@@ -213,11 +216,14 @@ public class Main {
 		JButton btnEncode = new JButton("Encode");
 		btnEncode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Util u = new Util();
-				u.init();
 				if(rdbtnFromTextBox.isSelected() && rdbtnToTextBox.isSelected()) {	
-					String k = (String) u.getKey(txtSourceMessage.getText());
-					txtDestMessage.setText(k);
+					String k = (String) u.getKey(txtSourceMessage.getText().toString());
+					if(k != null) {
+						txtDestMessage.setText(k);
+					} else {
+						txtDestMessage.setText("Null");
+					}
+					
 				}
 			}
 		});
@@ -227,6 +233,13 @@ public class Main {
 		JButton btnDecode = new JButton("Decode");
 		btnDecode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String source = txtSourceMessage_2.getText().toString();
+				String a = u.key.get(source);
+				if(a != null) {
+					txtDestMessage_2.setText(a);
+				} else {
+					txtDestMessage_2.setText("Null");
+				}
 				
 			}
 		});

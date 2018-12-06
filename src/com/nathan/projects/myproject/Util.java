@@ -1,15 +1,12 @@
 package com.nathan.projects.myproject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 public class Util {
-
+	
 	Map<String, String> key = new HashMap<String, String>(100, (float) .95);
-	List<String> input = new ArrayList<String>();
 	
 	public void init() {
 		key.put("00100000", " ");
