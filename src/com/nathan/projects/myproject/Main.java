@@ -269,6 +269,16 @@ public class Main {
 						Ie.printStackTrace();
 					}
 				}
+				
+				// File to File
+				else if(rdbtnFromFile.isSelected() && rdbtnToFile.isSelected()) {
+					
+				}
+				
+				// file to text field
+				else if(rdbtnFromFile.isSelected() && rdbtnToTextBox.isSelected()) {
+					
+				}
 			}
 		});
 		btnEncode.setBounds(336, 162, 89, 23);
