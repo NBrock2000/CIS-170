@@ -11,6 +11,10 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class Main {
@@ -44,9 +48,7 @@ public class Main {
 		});
 	}
 
-	public String getSM() {
-		return txtSourceMessage.getText();
-	}
+	
 	
 	/**
 	 * Create the application.
@@ -216,14 +218,56 @@ public class Main {
 		JButton btnEncode = new JButton("Encode");
 		btnEncode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Text field to text field
 				if(rdbtnFromTextBox.isSelected() && rdbtnToTextBox.isSelected()) {	
-					String k = (String) u.getKey(txtSourceMessage.getText().toString());
-					if(k != null) {
-						txtDestMessage.setText(k);
+					String source = txtSourceMessage.getText();
+					txtDestMessage.setText(null);
+					if(source.length() > 1) {
+						String k = "";
+						String[] s = source.split("");
+						for(int i = 0; i < s.length; i++) {
+								k = u.key.getKey(s[i]);
+								txtDestMessage.setText(txtDestMessage.getText() + k);
+						}
 					} else {
-						txtDestMessage.setText("Null");
+						String k = u.key.getKey(source);
+						txtDestMessage.setText(txtDestMessage.getText() + k);
 					}
-					
+
+				}
+				
+				// Text field to file
+				else if(rdbtnFromTextBox.isSelected() && rdbtnToFile.isSelected()) {
+					String source = txtDestFile.getText();
+					//BufferedWriter writer = null;
+					File f = new File("src/com/nathan/projects/myproject/EncodeOutput.txt");
+					try {
+						BufferedWriter w = new BufferedWriter(new FileWriter("src/com/nathan/projects/myproject/EncodeOutput.txt"));
+					    try {
+					    	if(source.length() > 1) {
+								String k = "";
+								String[] s = source.split("");
+								for(int i = 0; i < s.length; i++) {
+										k = u.key.getKey(s[i]);
+										w.write(k);
+								}
+							} else {
+								String k = u.key.getKey(source);
+								w.write(k);
+							}
+							w.newLine();
+						} 
+					    catch (IOException Ie) 
+					    {
+							Ie.printStackTrace();
+						}
+					    finally
+					    {
+					    	w.close();
+					    }
+					} catch (IOException Ie){
+						Ie.printStackTrace();
+					}
 				}
 			}
 		});

@@ -11,6 +11,5 @@ public class Project {
 	 * - encodes from ui to a file or to ui
 	 * - decodes from a file to a file or to ui
 	 * - decodes from ui to a file or to ui
-	 * - able to specify location(s) of file(s) within ui
 	 */
 }

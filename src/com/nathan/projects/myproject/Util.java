@@ -1,12 +1,13 @@
 package com.nathan.projects.myproject;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
+
+
+import org.apache.commons.collections4.BidiMap;
+import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 
 public class Util {
 	
-	Map<String, String> key = new HashMap<String, String>(100, (float) .95);
+	BidiMap<String, String> key = new DualHashBidiMap<String, String>();
 	
 	public void init() {
 		key.put("00100000", " ");
@@ -104,7 +105,7 @@ public class Util {
 		key.put("01111101", "}");
 		key.put("01111110", "~");
 	}
-	
+	/*
 	public Object getKey(String valueOfKey) {
 		
 		for(Object k : key.entrySet()) {
@@ -115,5 +116,5 @@ public class Util {
 		}
 		
 		return null;
-	}
+	}*/
 }
