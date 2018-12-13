@@ -11,8 +11,10 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
@@ -20,14 +22,10 @@ import java.awt.event.ActionEvent;
 public class Main {
 
 	private JFrame frmEncoder;
-	private JTextField txtSourceFile;
 	private JTextField txtSourceMessage;
-	private JTextField txtDestFile;
 	private JTextField txtDestMessage;
-	private JTextField txtSourceFile_2;
 	private JTextField txtSourceMessage_2;
 	private JTextField txtDestMessage_2;
-	private JTextField txtDestFile_2;
 
 	private static Util u;
 	/**
@@ -93,32 +91,14 @@ public class Main {
 		frmEncoder.getContentPane().add(rdbtnToTextBox);
 		rdbtnToTextBox.setSelected(true);
 		
-		JLabel lblEnterALocation = new JLabel("Enter a location");
-		lblEnterALocation.setBounds(68, 84, 108, 14);
-		frmEncoder.getContentPane().add(lblEnterALocation);
-		
 		JLabel lblEnterAMessage = new JLabel("Enter a message");
 		lblEnterAMessage.setBounds(68, 134, 108, 14);
 		frmEncoder.getContentPane().add(lblEnterAMessage);
-		
-		txtSourceFile = new JTextField();
-		txtSourceFile.setBounds(169, 81, 164, 20);
-		frmEncoder.getContentPane().add(txtSourceFile);
-		txtSourceFile.setColumns(10);
 		
 		txtSourceMessage = new JTextField();
 		txtSourceMessage.setBounds(169, 131, 164, 20);
 		frmEncoder.getContentPane().add(txtSourceMessage);
 		txtSourceMessage.setColumns(10);
-		
-		JLabel label = new JLabel("Enter a location");
-		label.setBounds(463, 84, 108, 14);
-		frmEncoder.getContentPane().add(label);
-		
-		txtDestFile = new JTextField();
-		txtDestFile.setColumns(10);
-		txtDestFile.setBounds(570, 81, 164, 20);
-		frmEncoder.getContentPane().add(txtDestFile);
 		
 		JLabel lblEncodedMessage = new JLabel("Encoded message");
 		lblEncodedMessage.setBounds(463, 134, 108, 14);
@@ -142,10 +122,6 @@ public class Main {
 		rdbtnFromTextBox_2.setBounds(21, 347, 109, 23);
 		frmEncoder.getContentPane().add(rdbtnFromTextBox_2);
 		
-		JLabel label_3 = new JLabel("Enter a location");
-		label_3.setBounds(68, 327, 108, 14);
-		frmEncoder.getContentPane().add(label_3);
-		
 		JRadioButton rdbtnFromFile_2 = new JRadioButton("From file");
 		rdbtnFromFile_2.setBounds(21, 297, 109, 23);
 		frmEncoder.getContentPane().add(rdbtnFromFile_2);
@@ -153,11 +129,6 @@ public class Main {
 		JLabel label_4 = new JLabel("Source");
 		label_4.setBounds(169, 280, 46, 14);
 		frmEncoder.getContentPane().add(label_4);
-		
-		txtSourceFile_2 = new JTextField();
-		txtSourceFile_2.setColumns(10);
-		txtSourceFile_2.setBounds(169, 324, 164, 20);
-		frmEncoder.getContentPane().add(txtSourceFile_2);
 		
 		txtSourceMessage_2 = new JTextField();
 		txtSourceMessage_2.setColumns(10);
@@ -167,10 +138,6 @@ public class Main {
 		JRadioButton rdbtnToFile_2 = new JRadioButton("To File");
 		rdbtnToFile_2.setBounds(420, 297, 109, 23);
 		frmEncoder.getContentPane().add(rdbtnToFile_2);
-		
-		JLabel label_5 = new JLabel("Enter a location");
-		label_5.setBounds(463, 327, 108, 14);
-		frmEncoder.getContentPane().add(label_5);
 		
 		JRadioButton rdbtnToTextBox_2 = new JRadioButton("To text box");
 		rdbtnToTextBox_2.setSelected(true);
@@ -185,11 +152,6 @@ public class Main {
 		txtDestMessage_2.setColumns(10);
 		txtDestMessage_2.setBounds(570, 374, 164, 20);
 		frmEncoder.getContentPane().add(txtDestMessage_2);
-		
-		txtDestFile_2 = new JTextField();
-		txtDestFile_2.setColumns(10);
-		txtDestFile_2.setBounds(570, 324, 164, 20);
-		frmEncoder.getContentPane().add(txtDestFile_2);
 		
 		JLabel label_7 = new JLabel("Destination");
 		label_7.setBounds(544, 280, 65, 14);
@@ -223,39 +185,35 @@ public class Main {
 					String source = txtSourceMessage.getText();
 					txtDestMessage.setText(null);
 					if(source.length() > 1) {
-						String k = "";
 						String[] s = source.split("");
 						for(int i = 0; i < s.length; i++) {
-								k = u.key.getKey(s[i]);
+								String k = u.key.getKey(s[i]);
 								txtDestMessage.setText(txtDestMessage.getText() + k);
 						}
 					} else {
 						String k = u.key.getKey(source);
-						txtDestMessage.setText(txtDestMessage.getText() + k);
+						txtDestMessage.setText(k);
 					}
 
 				}
 				
 				// Text field to file
 				else if(rdbtnFromTextBox.isSelected() && rdbtnToFile.isSelected()) {
-					String source = txtDestFile.getText();
-					//BufferedWriter writer = null;
-					File f = new File("src/com/nathan/projects/myproject/EncodeOutput.txt");
+					String source = txtSourceMessage.getText();
 					try {
 						BufferedWriter w = new BufferedWriter(new FileWriter("src/com/nathan/projects/myproject/EncodeOutput.txt"));
 					    try {
 					    	if(source.length() > 1) {
-								String k = "";
+
 								String[] s = source.split("");
 								for(int i = 0; i < s.length; i++) {
-										k = u.key.getKey(s[i]);
+										String k = u.key.getKey(s[i]);
 										w.write(k);
 								}
 							} else {
 								String k = u.key.getKey(source);
 								w.write(k);
 							}
-							w.newLine();
 						} 
 					    catch (IOException Ie) 
 					    {
@@ -272,12 +230,71 @@ public class Main {
 				
 				// File to File
 				else if(rdbtnFromFile.isSelected() && rdbtnToFile.isSelected()) {
-					
+					File f = new File("src/com/nathan/projects/myproject/EncodeInput.txt");
+					BufferedWriter w = null;
+					// Check to see if file exists
+					if(f.exists()) {
+						try {
+							BufferedReader br = new BufferedReader(new FileReader(f));
+							w = new BufferedWriter(new FileWriter("src/com/nathan/projects/myproject/EncodeOutput.txt", true));
+							String source;
+							//read in file
+							while((source = br.readLine()) != null) {
+								if(source.length() > 1) {
+									String[] s = source.split("");
+									for(int i = 0; i < s.length; i++) {
+											String k = u.key.getKey(s[i]);
+											w.write(k);
+									}
+								} else {
+									String k = u.key.getKey(source);
+									w.write(k);
+								}
+							}
+						} catch (IOException Ie){
+							Ie.printStackTrace();
+						}
+						finally
+						{
+							try {
+								w.close();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						
+						
+					}
 				}
 				
 				// file to text field
 				else if(rdbtnFromFile.isSelected() && rdbtnToTextBox.isSelected()) {
-					
+					File f = new File("src/com/nathan/projects/myproject/EncodeInput.txt");
+					// Check to see if file exists
+					if(f.exists()) {
+						try {
+							BufferedReader br = new BufferedReader(new FileReader(f));
+							String source;
+							//read in file
+							while((source = br.readLine()) != null) {
+								if(source.length() > 1) {
+									String[] s = source.split("");
+									for(int i = 0; i < s.length; i++) {
+											String k = u.key.getKey(s[i]);
+											txtDestMessage.setText(txtDestMessage.getText() + k);
+									}
+								} else {
+									String k = u.key.getKey(source);
+									txtDestMessage.setText(k);
+								}
+							}
+						} catch (IOException Ie){
+							Ie.printStackTrace();
+						}
+						
+						
+					}
 				}
 			}
 		});
@@ -287,13 +304,58 @@ public class Main {
 		JButton btnDecode = new JButton("Decode");
 		btnDecode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String source = txtSourceMessage_2.getText().toString();
-				String a = u.key.get(source);
-				if(a != null) {
-					txtDestMessage_2.setText(a);
-				} else {
-					txtDestMessage_2.setText("Null");
+				// text field to text field
+				if(rdbtnFromTextBox_2.isSelected() && rdbtnToTextBox_2.isSelected()) {
+					String source = txtSourceMessage_2.getText();
+					txtDestMessage_2.setText(null);
+					if(source.length() == 8) {
+						String a = u.key.get(source);
+						txtDestMessage_2.setText(a);
+					} else if (source.length() >= 8){
+						String[] s = source.split("(?<=\\G........)");
+						for(int i = 0; i < s.length; i ++) {
+							String b = u.key.get(s[i]);
+							txtDestMessage_2.setText(txtDestMessage_2.getText() + b);
+						}
+					}
 				}
+				
+				// text field to file
+				if(rdbtnFromTextBox_2.isSelected() && rdbtnToFile_2.isSelected()) {
+					String source = txtSourceMessage_2.getText();
+					txtDestMessage_2.setText(null);
+					try {
+						BufferedWriter w = new BufferedWriter(new FileWriter("src/com/nathan/projects/myproject/DecodeOutput.txt"));
+					    try {
+					    	if(source.length() == 8) {
+								String a = u.key.get(source);
+								w.write(a);
+							} else if (source.length() >= 8){
+								String[] s = source.split("(?<=\\G........)");
+								for(int i = 0; i < s.length; i ++) {
+									String b = u.key.get(s[i]);
+									w.write(b);
+								}
+							}
+
+						} 
+					    catch (IOException Ie) 
+					    {
+							Ie.printStackTrace();
+						}
+					    finally
+					    {
+					    	w.close();
+					    }
+					} catch (IOException Ie){
+						Ie.printStackTrace();
+					}
+				}
+				
+				// file to file
+				
+				
+				// file to text field
 				
 			}
 		});
