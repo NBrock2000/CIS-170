@@ -353,9 +353,74 @@ public class Main {
 				}
 				
 				// file to file
-				
+				else if(rdbtnFromFile_2.isSelected() && rdbtnToFile_2.isSelected()) {
+					File f = new File("src/com/nathan/projects/myproject/DecodeInput.txt");
+					BufferedWriter w = null;
+					// Check to see if file exists
+					if(f.exists()) {
+						try {
+							BufferedReader br = new BufferedReader(new FileReader(f));
+							w = new BufferedWriter(new FileWriter("src/com/nathan/projects/myproject/DecodeOutput.txt", true));
+							String source;
+							//read in file
+							while((source = br.readLine()) != null) {
+								if(source.length() == 8) {
+									String a = u.key.get(source);
+									w.write(a);
+								} else if (source.length() >= 8){
+									String[] s = source.split("(?<=\\G........)");
+									for(int i = 0; i < s.length; i ++) {
+										String b = u.key.get(s[i]);
+										w.write(b);
+									}
+								}
+							}
+						} catch (IOException Ie){
+							Ie.printStackTrace();
+						}
+						finally
+						{
+							try {
+								w.close();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						
+						
+					}
+				}
 				
 				// file to text field
+				else if(rdbtnFromFile_2.isSelected() && rdbtnToTextBox_2.isSelected()) {
+					File f = new File("src/com/nathan/projects/myproject/DecodeInput.txt");
+					txtDestMessage_2.setText(null);
+					// Check to see if file exists
+					if(f.exists()) {
+						try {
+							BufferedReader br = new BufferedReader(new FileReader(f));
+							String source;
+							//read in file
+							while((source = br.readLine()) != null) {
+								if(source.length() == 8) {
+									String a = u.key.get(source);
+									txtDestMessage_2.setText(a);
+								} else if (source.length() >= 8){
+									String[] s = source.split("(?<=\\G........)");
+									for(int i = 0; i < s.length; i ++) {
+										String b = u.key.get(s[i]);
+										txtDestMessage_2.setText(txtDestMessage_2.getText() + b);
+									}	
+								}
+							}
+						} catch (IOException Ie){
+							Ie.printStackTrace();
+						}
+						
+						
+					}
+				}
 				
 			}
 		});
